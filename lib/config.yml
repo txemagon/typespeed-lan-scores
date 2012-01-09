@@ -1,0 +1,16 @@
+default:
+  username: my_user
+  password: my_password
+  lan: 192.168.1
+  hosts: 1..1
+  file: /var/games/typespeed.score
+  excluded_hosts: []
+
+Electronica2:
+  username: root
+  password: enterprise,
+  lan: 172.19.2
+  hosts: 31..46
+  file: /var/games/typespeed.score
+  excluded_hosts: [13, 14]
+

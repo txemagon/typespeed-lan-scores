@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="30">
+    <title>typespeed scores</title>
+  </head>
+  <body>
+    <h1> Puntuaciones totales </h1>
+
+    <% @highscores.each do |language ,v| %>
+      <h2> <%= language.gsub("words.", "") %> </h2>
+      <table style="text-align: center;">
+        <tr>
+          <% ScoresApp::FIELDS.each do |header| %>
+            <th>
+              <%= header.capitalize.gsub("_", " ")%>
+            </th>
+          <% end %>
+        </tr>
+        <% scores = v.sort { |op1, op2| op2[1][0].to_i <=> op1[1][0].to_i } %>
+        <% scores.each do |score| %>
+          <!-- <%= score[1].inspect.html_safe %>-->
+          <tr>
+            <% fields = Fetcher.format(score[1]) %>
+              <td>
+                <%= fields[:score] %>
+              </td>
+              <td>
+                <%= score[1][3] %>
+              </td>
+              <td>
+                <%= fields[:level] %>
+              </td>
+              <td>
+                <%= fields[:cps] %>
+              </td>
+              <td>
+                <%= fields[:wpm] %>
+              </td>
+              <td>
+                <%= fields[:ratio] %> %
+              </td>
+              <td style="text-align: left;">
+                <%= fields[:typoratio] %>
+              </td>
+
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </body>
+</html>
+
